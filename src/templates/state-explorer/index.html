@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>App State Explorer</title>
+    <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
+</head>
+<body>
+    <div id="app"></div>
+    <script src="https://unpkg.com/mithril@1.1.6/mithril.min.js"></script>
+    <script>
+        var root = document.getElementById('app');
+
+        m.mount(root, {
+            site: {},
+            oninit(vnode) {
+                m.request({
+                    method: "GET",
+                    url: "http://localhost:3000/api/state"
+                }).then(state => {
+                    vnode.state.site = JSON.parse(state);
+                });
+            },
+            view(vnode) {
+                return m("code", JSON.stringify(vnode.state.site, null, ' '));
+            }
+        });
+    </script>
+</body>
+</html>
