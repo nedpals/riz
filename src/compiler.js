@@ -66,6 +66,17 @@ function renderPage (pagePath, outDir) {
     return renderer(component);
 }
 
+async function saveDataJson(outDir) {
+    console.log("Creating data.json");
+
+    fs.writeFileSync(
+        path.resolve(outDir, `./data.json`), 
+        JSON.stringify(store.data)
+    );
+
+    return path.resolve(outDir, `./data.json`);
+}
+
 async function savePages(outDir) {
     const _routes = Object.keys(store.routes);
 
@@ -107,7 +118,7 @@ async function savePages(outDir) {
             fs.writeFileSync(
                 path.resolve(outDir, `.${name}/${lastPath.length === 0 ? "main" : lastPath}.js`), 
                 pageJs.replace("//appPath//", siteDir(`./src/pages/${pagePath}${pathArr.filter(Boolean).length === 0 ? "index" : ""}.js`).replace(/\\/g, "\\\\"))
-                      .replace("'//appProps//'", `{ data: ${JSON.stringify(store.data)}, contexts: ${JSON.stringify(currentRoute.contexts)} }`)
+                      .replace("'//appContext//'", JSON.stringify(currentRoute.contexts))
             );
         }
 
@@ -123,11 +134,12 @@ async function compileAndBundle (options) {
         ...store.bundlerOptions
     };
     const bundler = new Bundler(path.join(options.outputs.temp, `./**/*.html`), bundlerOptions);
-
+    
     await savePages(options.outputs.temp);
 
     try {
         const bundle = await bundler.bundle();
+        await saveDataJson(options.outputs.out);
         return bundle;
     } catch(e) {
         throw e;
