@@ -164,7 +164,7 @@ exports.fetchRoutes = async (actions, data) => {
 TODO.
 
 ## Contribute
-- Fork / Clone this repo. (git clone https://github.com/nedpals/kuman.git)
+- Fork / Clone this repo. (git clone https://github.com/nedpals/riz.git)
 - Create your feature branch (git checkout -b my-new-feature)
 - Commit your changes (git commit -am 'Add some feature')
 - Push to the branch (git push origin my-new-feature)
