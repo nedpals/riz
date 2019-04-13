@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
+  "bin": {
+    "riz": "./bin/riz.js"
+  },
+  "preferGlobal": true,
   "dependencies": {
     "axios": "^0.18.0"
   },
