@@ -12,7 +12,7 @@ module.exports = {
         cache: true, // Enabled or disables caching, defaults to true
         cacheDir: '.cache', // The directory cache gets put in, defaults to .cache
         contentHash: true, // Disable content hash from being included on the filename
-        minify: false, // Minify files, enabled if process.env.NODE_ENV === 'production'
+        minify: true, // Minify files, enabled if process.env.NODE_ENV === 'production'
         scopeHoist: true, // Turn on experimental scope hoisting/tree shaking flag, for smaller production bundles
         target: 'browser', // Browser/node/electron, defaults to browser
         bundleNodeModules: true, // By default, package.json dependencies are not included when using 'node' or 'electron' with 'target' option above. Set to true to adds them to the bundle, false by default
