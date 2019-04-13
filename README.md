@@ -43,13 +43,13 @@ Once it is done, proceed to the directory and install it's dependencies (`npm in
 
 ### Folder Structure
 The structure of a Riz website project is simple and unopinionated. We made it structured so that other developers can contribute to the website's source code easily.
-
-`src/` - Source code folder of the website
-   |- `components/` - Components used in your website
-   |- `layouts/` - Layout components that be used in other parts of your site.
-   |- `pages/` - Obviously where all static pages be created.
-   |- `templates/` - This is where you put your page templates if you are generating routes from a set of data (e.g "blog posts").
-
+```
+src/ - Source code folder of the website
+ |- components/ - Components used in your website
+ |- layouts/ - Layout components that be used in other parts of your site.
+ |- pages/ - Obviously where all static pages be created.
+ |- templates/ - This is where you put your page templates if you are generating routes from a set of data (e.g "blog posts").
+```
 ### Page Components
 Page components in Riz are Mithril components which are object-based with the exception of wrapping it into a function. This is required as this is where Riz will inject page props such as the data and the current page context.
 
