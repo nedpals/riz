@@ -12,8 +12,8 @@ const router = require('./router')(store.routes)
 async function detectSiteFiles() {
     const options = { paths: [process.cwd()] };
 
-    const siteConfigPath = await requireResolveAsync('./ssg-config.js', options);
-    const siteNodeAPIPath = await requireResolveAsync('./ssg-api.js', options);
+    const siteConfigPath = await requireResolveAsync('./riz-config.js', options);
+    const siteNodeAPIPath = await requireResolveAsync('./riz-api.js', options);
 
     if (typeof siteNodeAPIPath === "string") {
         console.log("Site Node API file found.")
@@ -92,6 +92,7 @@ async function generateRoutes() {
             }).reduce((routesObj, r) => {
                 Object.keys(r).map(path => {
                     routesObj[path] = r[path];
+                    routesObj[path].component = siteDir('./templates/' + routesObj[path].component);
                 });
         
                 return routesObj;
